@@ -1,8 +1,9 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
+    --primary-color: #1a5f7a;
+    --secondary-color: #159895;
+    --accent-color: #57c5b6;
+    --background-color: #f8f9fa;
     --text-color: #333;
-    --background-color: #f4f4f4;
 }
 
 * {
@@ -12,142 +13,253 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
 }
 
-/* Header and Navigation Styles */
-header {
-    background-color: var(--primary-color);
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 1rem;
-    text-align: center;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
 }
 
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    padding: 1.5rem 5%;
 }
 
-nav ul {
+.logo-text {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
     display: flex;
     list-style: none;
-    margin-top: 1rem;
 }
 
-nav ul li {
-    margin: 0 1rem;
+.nav-links li {
+    margin-left: 1.5rem;
 }
 
-nav ul li a {
+.nav-links a {
     color: white;
     text-decoration: none;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: var(--secondary-color);
+.nav-links a:hover {
+    color: var(--accent-color);
 }
 
-/* Main Content Styles */
-main {
+.hero-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* Sections */
+.section-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 4rem 5%;
 }
 
-section {
-    margin-bottom: 2rem;
-    padding: 2rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-/* Home Section */
-#home {
+/* Mission Section */
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     text-align: center;
-    background-color: var(--secondary-color);
-    color: white;
 }
 
-#home h1 {
-    font-size: 2.5rem;
+.mission-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.mission-item:hover {
+    transform: translateY(-10px);
+}
+
+.mission-icon {
+    font-size: 3rem;
     margin-bottom: 1rem;
 }
 
 /* Resources Section */
 .resource-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
 .resource-card {
+    background-color: white;
+    padding: 2rem;
     text-align: center;
-    padding: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
 }
 
 .resource-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
 }
 
-/* Testimonials Section */
-#testimonials {
-    background-color: #f9f9f9;
+.resource-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.resource-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Testimonials */
+.section-testimonials {
+    background-color: #f4f4f4;
 }
 
 .testimonial {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-    margin-bottom: 1rem;
-    padding: 1rem;
     background-color: white;
-    border-radius: 8px;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.testimonial-author {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
 }
 
 /* Contact Section */
-#contact-form {
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.contact-form {
     display: grid;
     gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto;
 }
 
-#contact-form input,
-#contact-form textarea {
+.contact-form input,
+.contact-form textarea {
     width: 100%;
-    padding: 0.5rem;
+    padding: 1rem;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 5px;
 }
 
-#contact-form button {
+.contact-form button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0.75rem;
-    border-radius: 4px;
+    padding: 1rem;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-#contact-form button:hover {
+.contact-form button:hover {
     background-color: var(--secondary-color);
 }
 
-/* Footer Styles */
+.contact-info {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.emergency-note {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fff3cd;
+    border-radius: 5px;
+}
+
+/* Footer */
 footer {
     background-color: var(--primary-color);
     color: white;
     text-align: center;
-    padding: 1rem;
+    padding: 2rem;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .footer-links a {
@@ -158,16 +270,17 @@ footer {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-
-    .resource-grid {
+    .mission-grid,
+    .resource-grid,
+    .contact-wrapper {
         grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .nav-links {
+        display: none; /* Consider adding a mobile menu */
     }
 }
