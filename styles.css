@@ -1,8 +1,10 @@
 :root {
-    --deep-blue: #1A3A6C;
-    --bright-blue: #2E7CF6;
-    --accent-orange: #FF6B35;
-    --gradient-background: linear-gradient(135deg, rgba(46,124,246,0.9) 0%, rgba(26,58,108,0.9) 100%);
+    --primary-color: #1A3A6C;
+    --secondary-color: #2E7CF6;
+    --accent-color: #FF6B35;
+    --text-color: #1F2937;
+    --background-color: #F5F5F9;
+    --gradient-primary: linear-gradient(135deg, #2E7CF6 0%, #1A3A6C 100%);
 }
 
 * {
@@ -14,172 +16,122 @@
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden;
 }
 
-/* Hero Section with Impactful Background */
-#home {
-    position: relative;
-    height: 100vh;
+/* Loading Overlay */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    z-index: 9999;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--secondary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hero Section with Advanced Animations */
+.hero-section {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--gradient-primary);
     color: white;
-    background: var(--gradient-background);
+    position: relative;
     overflow: hidden;
 }
 
-#home::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('path/to/youth-support-background.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.2;
-    z-index: 1;
-}
-
-#home .content {
+.glitch {
     position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-#home h1 {
+    text-transform: uppercase;
     font-size: 4rem;
     font-weight: 900;
-    margin-bottom: 20px;
-    background: linear-gradient(to right, #FF6B35, #FFFFFF);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
-#home p {
-    font-size: 1.5rem;
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 30px;
-}
-
-/* Resource Sections with Image Backgrounds */
-#resources {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 50px 20px;
-}
-
-.resource-card {
-    width: 350px;
-    height: 450px;
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-}
-
-.resource-card:hover {
-    transform: scale(1.05);
-}
-
-.resource-card .card-image {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.resource-card .card-overlay {
+.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 red;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 blue;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(45px, 9999px, 82px, 0); }
+    25% { clip: rect(23px, 9999px, 35px, 0); }
+    50% { clip: rect(12px, 9999px, 67px, 0); }
+    75% { clip: rect(40px, 9999px, 54px, 0); }
+    100% { clip: rect(16px, 9999px, 91px, 0); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(23px, 9999px, 54px, 0); }
+    25% { clip: rect(56px, 9999px, 12px, 0); }
+    50% { clip: rect(34px, 9999px, 89px, 0); }
+    75% { clip: rect(67px, 9999px, 45px, 0); }
+    100% { clip: rect(12px, 9999px, 76px, 0); }
+}
+
+/* Floating Elements */
+.floating-elements {
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
-    color: white;
-    padding: 20px;
+    height: 100%;
 }
 
-.resource-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.floating-icon {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: float 3s ease-in-out infinite;
 }
 
-/* Testimonials Section */
-#testimonials {
-    background-color: #f9f9f9;
-    padding: 50px 20px;
-    text-align: center;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
 }
 
-.testimonial {
-    max-width: 700px;
-    margin: 0 auto;
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* Contact Section */
-#contact {
-    background: var(--gradient-background);
-    color: white;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-#contact-form {
-    max-width: 500px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.2);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-#contact-form input,
-#contact-form textarea {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.9);
-}
-
-#contact-form button {
-    background-color: #FF6B35;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#contact-form button:hover {
-    background-color: #FF5722;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    #home h1 {
-        font-size: 2.5rem;
-    }
-
-    .resource-card {
-        width: 100%;
-        max-width: 350px;
+/* Responsive Design & Interactivity */
+@media screen and (max-width: 768px) {
+    /* Mobile-specific styles */
+    .hero-section {
+        flex-direction: column;
     }
 }
+
+/* Additional complex animations, interactive elements, and responsive design would continue here */
