@@ -1,74 +1,68 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Form Submission Handler
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = this.querySelector('input[type="text"]').value.trim();
-            const email = this.querySelector('input[type="email"]').value.trim();
-            const message = this.querySelector('textarea').value.trim();
-
-            if (name === '' || email === '' || message === '') {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            // Simulate form submission with a more engaging message
-            Swal.fire({
-                icon: 'success',
-                title: 'Message Sent!',
-                text: `Thank you, ${name}. We will review your message and get back to you soon.`,
-                confirmButtonColor: '#1a5f7a'
-            });
-
-            this.reset();
-        });
-    }
+    // Loading Overlay
+    const loadingOverlay = document.getElementById('loading-overlay');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => loadingOverlay.style.display = 'none', 500);
+        }, 1000);
+    });
 
     // Smooth Scrolling
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetSection = document.querySelector(link.getAttribute('href'));
+            targetSection.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
-    // Parallax-like Effect for Hero Section
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.pageYOffset;
-            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
-        });
-    }
+    // Interactive Form Submission
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simulate form submission with validation
+        const name = contactForm.querySelector('input[type="text"]').value.trim();
+        const email = contactForm.querySelector('input[type="email"]').value.trim();
+        const message = contactForm.querySelector('textarea').value.trim();
 
-    // Animate Section Entries
-    const observerOptions = {
-        threshold: 0.1
-    };
+        if (name && email && message) {
+            // Show success modal or notification
+            Swal.fire({
+                title: 'Message Sent!',
+                text: 'We\'ll get back to you soon.',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+            });
+            contactForm.reset();
+        } else {
+            Swal.fire({
+                title: 'Oops!',
+                text: 'Please fill in all fields.',
+                icon: 'error',
+                confirmButtonText: 'Try Again'
+            });
+        }
+    });
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
+    // Floating Elements Animation
+    const floatingIcons = document.querySelectorAll('.floating-icon');
+    floatingIcons.forEach((icon, index) => {
+        icon.style.top = `${Math.random() * 100}%`;
+        icon.style.left = `${Math.random() * 100}%`;
+        icon.style.animationDelay = `${index * 0.5}s`;
+    });
 
-    document.querySelectorAll('.section-content').forEach(section => {
-        section.classList.add('fade-in');
-        observer.observe(section);
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navbar = document.querySelector('.navbar');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+        navbar.classList.toggle('mobile-menu-open');
     });
 });
 
-// Optional: Sweet Alert for more engaging notifications
-// Note: In a real implementation, you'd include the Sweet Alert library
-function initSweetAlert() {
-    if (typeof Swal === 'undefined') {
-        console.warn('Sweet Alert library not loaded');
-    }
-}
+// Optional: Include SweetAlert for beautiful notifications
+document.write('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>');
