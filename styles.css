@@ -1,9 +1,8 @@
 :root {
-    --primary-color: #1a5f7a;
-    --secondary-color: #159895;
-    --accent-color: #57c5b6;
-    --background-color: #f8f9fa;
-    --text-color: #333;
+    --deep-blue: #1A3A6C;
+    --bright-blue: #2E7CF6;
+    --accent-orange: #FF6B35;
+    --gradient-background: linear-gradient(135deg, rgba(46,124,246,0.9) 0%, rgba(26,58,108,0.9) 100%);
 }
 
 * {
@@ -13,274 +12,174 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: #f4f4f4;
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+/* Hero Section with Impactful Background */
+#home {
     position: relative;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 5%;
-}
-
-.logo-text {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-}
-
-.nav-links li {
-    margin-left: 1.5rem;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-    color: var(--accent-color);
-}
-
-.hero-content {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 5%;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: var(--accent-color);
     color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: transform 0.3s ease;
+    background: var(--gradient-background);
+    overflow: hidden;
 }
 
-.cta-button:hover {
-    transform: scale(1.05);
+#home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('path/to/youth-support-background.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 1;
 }
 
-/* Sections */
-.section-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 5%;
+#home .content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
 }
 
-/* Mission Section */
-.mission-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    text-align: center;
+#home h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #FF6B35, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.mission-item {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+#home p {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 30px;
 }
 
-.mission-item:hover {
-    transform: translateY(-10px);
-}
-
-.mission-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* Resources Section */
-.resource-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+/* Resource Sections with Image Backgrounds */
+#resources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 20px;
 }
 
 .resource-card {
-    background-color: white;
-    padding: 2rem;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 350px;
+    height: 450px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
 }
 
 .resource-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.05);
 }
 
-.resource-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.resource-card .card-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.resource-link {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 600;
+.resource-card .card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    color: white;
+    padding: 20px;
 }
 
-/* Testimonials */
-.section-testimonials {
-    background-color: #f4f4f4;
+.resource-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Testimonials Section */
+#testimonials {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    text-align: center;
 }
 
 .testimonial {
-    max-width: 800px;
+    max-width: 700px;
     margin: 0 auto;
-    text-align: center;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.testimonial-author {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: var(--secondary-color);
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* Contact Section */
-.contact-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+#contact {
+    background: var(--gradient-background);
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
 }
 
-.contact-form {
-    display: grid;
-    gap: 1rem;
+#contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 30px;
+    border-radius: 15px;
 }
 
-.contact-form input,
-.contact-form textarea {
+#contact-form input,
+#contact-form textarea {
     width: 100%;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.9);
 }
 
-.contact-form button {
-    background-color: var(--primary-color);
+#contact-form button {
+    background-color: #FF6B35;
     color: white;
     border: none;
-    padding: 1rem;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.contact-form button:hover {
-    background-color: var(--secondary-color);
-}
-
-.contact-info {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.emergency-note {
-    margin-top: 1rem;
-    padding: 1rem;
-    background-color: #fff3cd;
-    border-radius: 5px;
-}
-
-/* Footer */
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 2rem;
-}
-
-.footer-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.footer-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.footer-links a {
-    color: white;
-    margin: 0 0.5rem;
-    text-decoration: none;
+#contact-form button:hover {
+    background-color: #FF5722;
 }
 
 /* Responsive Design */
-@media screen and (max-width: 768px) {
-    .mission-grid,
-    .resource-grid,
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content h1 {
+@media (max-width: 768px) {
+    #home h1 {
         font-size: 2.5rem;
     }
 
-    .nav-links {
-        display: none; /* Consider adding a mobile menu */
+    .resource-card {
+        width: 100%;
+        max-width: 350px;
     }
 }
